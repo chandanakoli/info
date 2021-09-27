@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-deployment
+  labels:
+    app: customer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer
+  template:
+    metadata:
+      labels:
+        app: customer
+    spec:
+      imagePullSecrets:
+      - name: key
+      containers:
+      - name: customer
+        image: 96406/venkyrepo1:1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8090
